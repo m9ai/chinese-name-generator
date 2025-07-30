@@ -14,7 +14,7 @@ export default defineConfig({
         description: 'Generate Chinese names for foreigners',
         theme_color: '#ffffff',
         icons: [{
-          src: 'icon-192x192.png',
+          src: 'favicon.png',
           sizes: '192x192',
           type: 'image/png'
         }]

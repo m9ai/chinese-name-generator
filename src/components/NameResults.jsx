@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 // 导入语音工具函数
-import { speakName } from '../utils/speechUtils';
+import { speakName, isSpeechSupported } from '../utils/speechUtils';
 // 导入赞助作者组件
 import SupportAuthor from '../components/SupportAuthor';
 
@@ -33,16 +33,19 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
             <p class="text-lg text-blue-600 font-medium mb-3">{nameData.pinyin}</p>
 
             {/* 添加语音播放按钮 */}
-            <button
-              onClick={() => speakName(nameData.name)} // 保持调用方式不变
-              class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors"
-              aria-label={t('action.play_pronunciation')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-              </svg>
-              {t('action.listen_pronunciation')}
-            </button>
+            {/* 条件渲染语音按钮 */}
+            {isSpeechSupported() && (
+              <button
+                onClick={() => speakName(nameData.name)}
+                class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors"
+                aria-label={t('action.play_pronunciation')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+                {t('action.listen_pronunciation')}
+              </button>
+            )}
             <button
               onClick={() => navigateToNamePage(nameData)}
               class="absolute right-0 top-0 px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none"

@@ -1,17 +1,25 @@
-/**
- * 语音朗读中文名字
- * @param {string} name - 要朗读的中文名字
- */
-export const speakName = (name) => {
-  // 停止任何正在播放的语音
-  window.speechSynthesis.cancel();
+export function isSpeechSupported() {
+  return 'speechSynthesis' in window;
+}
 
-  // 创建语音合成对象
-  const utterance = new SpeechSynthesisUtterance(name);
-  // 设置中文语音
-  utterance.lang = 'zh-CN';
-  // 调整语速
-  utterance.rate = 0.5;
-  // 播放语音
-  window.speechSynthesis.speak(utterance);
-};
+export function speakName(name) {
+  // 检查浏览器支持情况
+  if (!isSpeechSupported()) {
+    console.warn('当前浏览器不支持语音合成功能');
+    return false;
+  }
+
+  try {
+    const utterance = new SpeechSynthesisUtterance(name);
+    utterance.lang = 'zh-CN';
+    // 添加语音播放错误处理
+    utterance.onerror = (event) => {
+      console.error('语音播放失败:', event.error);
+    };
+    window.speechSynthesis.speak(utterance);
+    return true;
+  } catch (error) {
+    console.error('语音合成发生错误:', error);
+    return false;
+  }
+}
