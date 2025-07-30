@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'preact/hooks';
+import Clarity from '@microsoft/clarity';
 import { generateChineseName, generatePinyin } from './utils/nameGenerator';
 import NameForm from './components/NameForm';
 import NameResults from './components/NameResults';
@@ -96,6 +97,10 @@ export default function App() {
       setZodiac(getZodiacSign(formData.birthday));
     }
   }, [formData.birthday]);
+
+  useEffect(() => {
+    location.hostname !== 'localhost' && Clarity.init('smz8tcd1tm')
+  }, [])
 
   return (<>
     {

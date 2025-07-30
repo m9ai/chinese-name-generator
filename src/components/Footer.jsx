@@ -26,7 +26,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           class="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
         >
-          <svg aria-label="x icon" width="16px" height="16px" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-4"><path class="fill-black" d="M10.6903 1.1106H12.6581L8.35892 6.0243L13.4166 12.7107H9.45647L6.35477 8.65545L2.80572 12.7107H0.836671L5.43509 7.45498L0.583252 1.1106H4.6439L7.44757 4.81729L10.6903 1.1106ZM9.9996 11.5329H11.09L4.0514 2.22659H2.88127L9.9996 11.5329Z" fill="#1F2022"></path></svg>
+          <svg aria-label="x icon" width="16px" height="16px" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="fill-black" d="M10.6903 1.1106H12.6581L8.35892 6.0243L13.4166 12.7107H9.45647L6.35477 8.65545L2.80572 12.7107H0.836671L5.43509 7.45498L0.583252 1.1106H4.6439L7.44757 4.81729L10.6903 1.1106ZM9.9996 11.5329H11.09L4.0514 2.22659H2.88127L9.9996 11.5329Z" fill="#1F2022"></path></svg>
           Tweet
         </a>
 

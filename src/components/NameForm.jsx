@@ -33,6 +33,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
                 checked={formData.gender === 'male'}
                 onChange={onInputChange}
                 class="sr-only peer"
+                required
               />
               <span class="w-5 h-5 border-2 border-gray-300 peer-checked:border-blue-500 rounded-full absolute left-4 transition-colors duration-200 peer-checked:bg-blue-500 flex items-center justify-center">
                 <span class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></span>
@@ -47,6 +48,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
                 checked={formData.gender === 'female'}
                 onChange={onInputChange}
                 class="sr-only peer"
+                required
               />
               <span class="w-5 h-5 border-2 border-gray-300 peer-checked:border-blue-500 rounded-full absolute left-4 transition-colors duration-200 peer-checked:bg-blue-500 flex items-center justify-center">
                 <span class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></span>
