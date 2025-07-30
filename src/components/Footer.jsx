@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 export default function Footer() {
+  const { t } = useTranslation();
   // 使用window.location获取当前URL，适配preact-router
   const currentUrl = `${window.location.origin}${window.location.pathname}`;
   const shareText = 'Discover my Chinese name!';
@@ -43,7 +46,7 @@ export default function Footer() {
           TikTok
         </a>
       </div>
-      <p>Discover the perfect Chinese name that reflects your identity</p>
+      <p>{t('footer.description')}</p>
     </div>
   );
 }

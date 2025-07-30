@@ -33,8 +33,8 @@ export default function Header() {
       </h1>
       {/* 添加Home链接 */}
       <div class="mb-4">
-        <a href="/" class="text-blue-600 hover:text-blue-800 hover:underline transition-colors cursor-pointer">
-          🏠 Home
+        <a href="/" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors cursor-pointer">
+          🏠 {t('header.home')}
         </a>
       </div>
       <p class="text-[clamp(1rem,3vw,1.25rem)] text-gray-600 max-w-lg mx-auto mb-6 h-10 relative">

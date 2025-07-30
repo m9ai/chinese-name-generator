@@ -3,10 +3,13 @@
  * @param {string} birthday - 生日日期字符串 (YYYY-MM-DD)
  * @returns {string} 生肖名称
  */
+
+
+export const zodiacs = ['rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake', 'horse', 'sheep', 'monkey', 'rooster', 'dog', 'pig'];
+
 export function getZodiacSign(birthday) {
   const birthDate = new Date(birthday);
   const year = birthDate.getFullYear();
-  const zodiacs = ['rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake', 'horse', 'sheep', 'monkey', 'rooster', 'dog', 'pig'];
   const index = (year - 1900) % 12;
   return zodiacs[index < 0 ? index + 12 : index];
 }
@@ -18,5 +21,5 @@ export function getZodiacSign(birthday) {
  */
 export function getZodiacBackground(zodiac) {
   // 假设生肖图片存储在public/zodiac目录下
-  return `/zodiac/${zodiac}.png`;
+  return zodiacs.indexOf(zodiac) !== -1 ? `/zodiac/${zodiac}.png` : '/zodiac/default.png';
 }

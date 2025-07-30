@@ -1,7 +1,27 @@
 import { useTranslation } from 'react-i18next';
+// 添加状态和验证工具导入
+import { useState } from 'preact/hooks';
+import { validateUsername } from '../utils/validationUtils';
 
 export default function NameForm({ formData, onInputChange, onGenerate, isGenerating }) {
   const { t } = useTranslation();
+  const [usernameError, setUsernameError] = useState('');
+
+  // 添加用户名验证处理
+  const handleGenerateClick = () => {
+    // 清除之前的错误
+    setUsernameError('');
+
+    // 验证用户名
+    const { isValid } = validateUsername(formData.name);
+    if (!isValid) {
+      setUsernameError(t('usernameValidation.prohibitedWord'));
+      return;
+    }
+
+    // 验证通过，调用生成函数
+    onGenerate();
+  };
 
   return (
     <div class="p-6 sm:p-8">
@@ -19,6 +39,10 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
             placeholder="Your English name"
             required
           />
+          {/* 添加用户名错误提示 */}
+          {usernameError && (
+            <p class="text-orange-600 text-sm mt-1">⚠️ {usernameError}</p>
+          )}
         </div>
 
         {/* Gender Selector */}
@@ -75,8 +99,8 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
         {/* Submit Button */}
         <button
           type="button"
-          onClick={onGenerate}
-          disabled={!formData.name || !formData.gender || !formData.birthday || isGenerating}
+          onClick={handleGenerateClick}
+          disabled={!formData.name || !formData.gender || !formData.birthday || isGenerating || usernameError}
           class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {isGenerating ? (
@@ -92,3 +116,16 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
     </div>
   );
 }
+
+const onGenerate = () => {
+  // 确保导航URL包含gender参数
+  router.push({
+    path: '/name',
+    query: {
+      username: formData.name,
+      chineseName: generatedName.fullName,
+      zodiac: calculatedZodiac,
+      gender: formData.gender // 添加性别参数
+    }
+  });
+};

@@ -14,7 +14,8 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
     const params = new URLSearchParams({
       username: userName,
       chineseName: nameData.name,
-      zodiac: zodiac
+      zodiac: zodiac,
+      gender: nameData.gender || '0' // 添加性别参数
     });
     window.location.href = `/name?${params.toString()}`;
   };
@@ -37,7 +38,7 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
             {isSpeechSupported() && (
               <button
                 onClick={() => speakName(nameData.name)}
-                class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors"
+                class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors dark:text-white"
                 aria-label={t('action.play_pronunciation')}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -48,7 +49,7 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
             )}
             <button
               onClick={() => navigateToNamePage(nameData)}
-              class="absolute right-0 top-0 px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none"
+              class="absolute right-0 top-0 px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none dark:text-white"
             >
               {t('action.select')}
             </button>

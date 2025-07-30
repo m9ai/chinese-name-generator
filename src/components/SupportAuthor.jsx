@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function SupportAuthor() {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState('0.99');
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -36,21 +38,21 @@ export default function SupportAuthor() {
 
             {/* 模态框内容 */}
             <div className="p-8 pt-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Support the Author</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">{t('supportAuthor.title')}</h3>
 
               {/* 金额选择 */}
               <div className="mb-8">
-                <p className="text-gray-600 mb-4">Choose an amount:</p>
+                <p className="text-gray-600 mb-4">{t('supportAuthor.chooseAmount')}</p>
                 <div className="flex gap-4 justify-center">
                   <button
                     onClick={() => setSelectedAmount('0.99')}
-                    className={`px-6 py-3 rounded-full transition-all ${selectedAmount === '0.99' ? 'bg-blue-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                    className={`px-6 py-3 rounded-full transition-all dark:text-white ${selectedAmount === '0.99' ? 'bg-blue-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
                     $0.99+ (I like it)
                   </button>
                   <button
                     onClick={() => setSelectedAmount('0.1')}
-                    className={`px-6 py-3 rounded-full transition-all ${selectedAmount === '0.1' ? 'bg-yellow-500' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                    className={`px-6 py-3 rounded-full transition-all dark:text-white ${selectedAmount === '0.1' ? 'bg-yellow-500' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
                     $0.10+ (Not bad)
                   </button>
@@ -60,7 +62,7 @@ export default function SupportAuthor() {
               {/* 支付方式选择 */}
               {!selectedMethod ? (
                 <div>
-                  <p className="text-gray-600 mb-4">Choose payment method:</p>
+                  <p className="text-gray-600 mb-4">{t('supportAuthor.paymentMethod')}</p>
                   <div className="grid grid-cols-3 gap-4">
                     <button
                       onClick={() => setSelectedMethod('paypal')}
@@ -69,7 +71,7 @@ export default function SupportAuthor() {
                       <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
                         <span className="text-amber-600 font-bold text-xl">☕️</span>
                       </div>
-                      <span className="text-sm">PayPal</span>
+                      <span className="text-sm dark:text-white">{t('supportAuthor.paypal')}</span>
                     </button>
 
                     <button
@@ -79,7 +81,7 @@ export default function SupportAuthor() {
                       <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
                         <span className="text-blue-600 font-bold text-xl">🥤</span>
                       </div>
-                      <span className="text-sm">Alipay+</span>
+                      <span className="text-sm dark:text-white">{t('supportAuthor.alipay')}</span>
                     </button>
 
                     <button
@@ -89,7 +91,7 @@ export default function SupportAuthor() {
                       <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
                         <span className="text-green-600 font-bold text-xl">🍺</span>
                       </div>
-                      <span className="text-sm">WeChat</span>
+                      <span className="text-sm dark:text-white">{t('supportAuthor.wechat')}</span>
                     </button>
                   </div>
                 </div>
@@ -104,12 +106,12 @@ export default function SupportAuthor() {
                         rel="noopener noreferrer"
                         className="inline-block px-8 py-3 bg-amber-500 text-white rounded-full hover:bg-amber-600 transition-colors"
                       >
-                        Complete Payment
+                        <span className="dark:text-white">{t('supportAuthor.completePayment')}</span>
                       </a>
                     </div>
                   ) : (
                     <div className="py-4">
-                      <p className="text-gray-600 mb-4">Scan QR Code to pay ${selectedAmount}</p>
+                      <p className="text-gray-600 mb-6">{t('supportAuthor.scanQrCode', { amount: selectedAmount })}</p>
                       <div className="bg-white p-4 inline-block rounded-lg shadow-md">
                         <img 
                           src={paymentConfig[selectedMethod]} 
@@ -122,9 +124,9 @@ export default function SupportAuthor() {
 
                   <button
                     onClick={() => setSelectedMethod(null)}
-                    className="mt-6 text-blue-500 hover:text-blue-700"
+                    className="mt-6 text-blue-500 hover:text-blue-700 dark:text-white"
                   >
-                    ← Back to payment methods
+                    {t('supportAuthor.backToMethods')}
                   </button>
                 </div>
               )}

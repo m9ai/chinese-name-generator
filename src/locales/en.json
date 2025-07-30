@@ -39,7 +39,6 @@
   "action.select": "Select",
   "action.listen_pronunciation": "Listen Pronunciation",
   "action.play_pronunciation": "Play pronunciation",
-  "status.saving": "Saving...",
   "status.saved_success": "Saved Successfully",
   "status.save_failed": "Save Failed",
   "pronunciation.guide": "Click the speaker icon to hear the pronunciation",
@@ -48,5 +47,40 @@
     "greeting": "Hello, {{username}}.",
     "zodiac": "Your Chinese zodiac sign is {{zodiac}},",
     "name": "Your Chinese name is:"
+  },
+  "supportAuthor": {
+    "title": "Support the Author",
+    "chooseAmount": "Choose an amount:",
+    "amountOptions": {
+      "likeIt": "$0.99+ (I like it)",
+      "notBad": "$0.10+ (Not bad)"
+    },
+    "paymentMethod": "Choose payment method:",
+    "paypal": "PayPal",
+    "alipay": "Alipay+",
+    "wechat": "WeChat",
+    "completePayment": "Complete Payment",
+    "scanQrCode": "Scan QR Code to pay {{amount}}",
+    "backToMethods": "← Back to payment methods"
+  },
+  "footer": {
+    "description": "Discover the perfect Chinese name that reflects your identity",
+    "share": "Share",
+    "tweet": "Tweet",
+    "tiktok": "TikTok"
+  },
+  "nameValidation": {
+    "warning": "Name Validation Warning",
+    "invalidFormat": "Invalid Chinese name format. Please try again.",
+    "invalidSurname": "This surname is not in our database.",
+    "invalidGivenName": "The character '{{char}}' is not a valid given name.",
+    "missingParameters": "Missing parameters for name validation."
+  },
+  "usernameValidation": {
+    "warning": "Username Warning",
+    "prohibitedWord": "Username contains inappropriate content"
+  },
+  "header": {
+    "home": "Home"
   }
 }
