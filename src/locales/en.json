@@ -1,0 +1,52 @@
+{
+  "app.mainTitle": "Chinese Name Generator",
+  "app.subTitleArray": [
+    "Discover Your Perfect Chinese Identity",
+    "Uncover the Meaning Behind Chinese Names",
+    "Bridge Cultures Through Authentic Naming"
+  ],
+  "app.metaDescription": "Generate authentic Chinese names with meanings, pronunciation guides, and zodiac sign compatibility analysis.",
+  "form.name": "Your Name",
+  "form.birthday": "Birthday",
+  "form.gender": "Gender",
+  "form.gender.male": "Male",
+  "form.gender.female": "Female",
+  "form.generate": "Generate Names",
+  "results": {
+    "title": "Your Chinese Names",
+    "popular": "Popular Style",
+    "fashionable": "Fashionable Style",
+    "traditional": "Traditional Style",
+    "save_instruction": "Scroll to bottom & click button for save"
+  },
+  "results.zodiacSign": "Zodiac Sign",
+  "results.compatibility": "Compatibility",
+  "results.meaning": "Meaning",
+  "results.pronunciation": "Pronunciation",
+  "actions.saveImage": "Save Image",
+  "actions.share": "Share",
+  "actions.speakName": "Hear Pronunciation",
+  "status.saving": "Saving...",
+  "status.saved": "Image saved successfully!",
+  "status.error": "Failed to save image",
+  "toast.invalidInput": "Please fill in all required fields",
+  "toast.generationSuccess": "Names generated successfully",
+  "toast.generationError": "Failed to generate names",
+  "results.popular": "Most Popular",
+  "results.fashionable": "Most Fashionable",
+  "results.traditional": "Most Traditional",
+  "action.save": "Save Image",
+  "action.select": "Select",
+  "action.listen_pronunciation": "Listen Pronunciation",
+  "action.play_pronunciation": "Play pronunciation",
+  "status.saving": "Saving...",
+  "status.saved_success": "Saved Successfully",
+  "status.save_failed": "Save Failed",
+  "pronunciation.guide": "Click the speaker icon to hear the pronunciation",
+  "namePage": {
+    "title": "Your Chinese Name",
+    "greeting": "Hello, {{username}}.",
+    "zodiac": "Your Chinese zodiac sign is {{zodiac}},",
+    "name": "Your Chinese name is:"
+  }
+}
