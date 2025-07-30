@@ -42,7 +42,7 @@ export const validateChineseName = (chineseName, gender, t) => {
   }
 
   // 根据性别选择对应的名字数组
-  const givenNames = gender === 'male' ? maleGivenNames : femaleGivenNames;
+  const givenNames = [...maleGivenNames, ...femaleGivenNames];
 
   // 验证名字第一个字
   if (!givenNames.includes(givenName1)) {
