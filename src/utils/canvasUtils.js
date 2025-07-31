@@ -11,9 +11,11 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
   // 创建Canvas元素
   const canvas = document.createElement('canvas');
   const nameCount = Object.values(generatedNames).length;
-  const baseHeight = 180; // 增加标题区域高度以适应新文案
-  const cardHeight = 120; // 减少卡片高度
+  const baseHeight = 280; // 增加标题区域高度以适应新文案
+  const cardHeight = 100; // 减少卡片高度
   const spacing = 20; // 卡片间距
+  const highlightColor = '#3b82f6';
+  const textColor = '#1e293b';
 
   // 设置Canvas尺寸
   canvas.width = 500;
@@ -39,16 +41,22 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
   ctx.drawImage(background, canvas.width / 4, canvas.height / 4, canvas.width * 0.8, canvas.height * 0.8);
 
   ctx.font = '24px Arial, sans-serif';
-  ctx.fillStyle = '#155dfc';
+  ctx.fillStyle = highlightColor;
   ctx.textAlign = 'left';
   ctx.fillText(`Chinese Name Generator`, 50, 60);
   // 3. 绘制标题文案
   ctx.font = '18px Arial, sans-serif';
-  ctx.fillStyle = '#1e293b';
+  ctx.fillStyle = textColor;
   ctx.textAlign = 'left';
-  ctx.fillText(`Hello, ${englishName}.`, 50, 100);
+  ctx.fillText(`Hey, `, 50, 100);
+  ctx.fillStyle = highlightColor;
+  ctx.fillText(englishName, 95, 100);
+  ctx.fillStyle = textColor;
   ctx.fillText(`Based on the input information, `, 50, 130);
-  ctx.fillText(`your zodiac sign is ${zodiac},`, 50, 160);
+  ctx.fillText(`your zodiac sign is `, 50, 160);
+  ctx.fillStyle = highlightColor;
+  ctx.fillText(zodiac, 205, 160);
+  ctx.fillStyle = textColor;
   ctx.fillText('& the recommended Chinese names are as follows:', 50, 190);
 
   // 4. 绘制名字卡片
@@ -71,13 +79,18 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
 
     // 绘制名字
     ctx.font = '32px Arial, sans-serif';
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = highlightColor;
     ctx.fillText(nameData.name, 50, y + 60);
 
     // 绘制拼音
     ctx.font = '20px Arial, sans-serif';
-    ctx.fillStyle = '#3b82f6';
-    ctx.fillText(nameData.pinyin, 50, y + 90);
+    ctx.fillStyle = highlightColor;
+    ctx.fillText(`(${nameData.pinyin})`, 50 + 110, y + 60);
+
+    // 绘制英文含义
+    ctx.font = '16px Arial, sans-serif';
+    ctx.fillStyle = '#4a5565';
+    ctx.fillText(`Meaning: a person who's ${nameData.meaning}`, 50, y + 90);
   });
 
   // 加载并绘制二维码图片

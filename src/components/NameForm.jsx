@@ -37,7 +37,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
               value={formData.name}
               onChange={onInputChange}
               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 pr-10"
-              placeholder="Your full name"
+              placeholder="eg: Taylor Alison Swift"
               required
             />
             {formData.name && (
@@ -106,6 +106,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
             onChange={onInputChange}
             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
             required
+            placeholder="eg: 1989-12-13"
           />
         </div>
 

@@ -1,4 +1,5 @@
 import { pinyin } from 'pinyin-pro';
+import { getEnglishMeaning } from './nameMeanings';
 
 // 导入扩充后的名字数组
 import maleGivenNames from './maleGivenNames';
@@ -52,11 +53,17 @@ export const generateChineseName = (input, offset) => {
   const nameIndex1 = Math.floor(code / 100) % givenNames.length;
   const nameIndex2 = Math.floor(code / 1000) % givenNames.length;
 
+  const surname = surnames[surnameIndex];
+  const givenName1 = givenNames[nameIndex1];
+  const givenName2 = givenNames[nameIndex2];
+  const fullName = surname + givenName1 + givenName2;
+
   return {
-    surname: surnames[surnameIndex],
-    givenName1: givenNames[nameIndex1],
-    givenName2: givenNames[nameIndex2],
-    fullName: surnames[surnameIndex] + givenNames[nameIndex1] + givenNames[nameIndex2]
+    surname,
+    givenName1,
+    givenName2,
+    fullName,
+    meaning: getEnglishMeaning(givenName1 + givenName2)
   };
 };
 

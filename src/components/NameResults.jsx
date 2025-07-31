@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 // 导入赞助作者组件
 import SupportAuthor from '../components/SupportAuthor';
 import SpeekBtn from '../components/SpeekBtn';
-import { getZodiacBackground } from '../utils/zodiac';
+import { getZodiacBackground, zodiacMeanings } from '../utils/zodiac';
 
 export default function NameResults({ names, onSave, saveStatus, userName, zodiac }) {
   const { t } = useTranslation();
@@ -37,8 +37,11 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
             }}
           >
             <h3 class="text-sm font-medium text-gray-500 mb-1 capitalize">{t(`results.${type}`)}</h3>
-            <p class="text-3xl font-bold text-gray-900 mb-1 tracking-tighter">{nameData.name}</p>
-            <p class="text-lg text-blue-600 font-medium mb-3">{nameData.pinyin}</p>
+            <p class="text-3xl font-bold text-gray-900 mb-1 tracking-tighter">{nameData.name}
+              <span class="text-lg text-blue-600 font-medium"> {nameData.pinyin}</span>
+            </p>
+            <p class="text-sm text-gray-600 mb-3">{t('results.meaning')}{nameData.meaning}</p>
+            <p class="text-sm text-gray-500 mb-3">{t('results.zodiac', {zodiac})}{zodiacMeanings[zodiac].meaning}</p>
 
             {/* 添加语音播放按钮 */}
             <SpeekBtn chineseName={nameData.name} />

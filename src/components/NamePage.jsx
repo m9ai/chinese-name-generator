@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { useTranslation } from 'react-i18next';
 import { generatePinyin, surnames } from '../utils/nameGenerator';
-import { getZodiacBackground } from '../utils/zodiac';
+import { getZodiacBackground, zodiacMeanings } from '../utils/zodiac';
 import SupportAuthor from './SupportAuthor';
 // 导入姓名验证工具
 import { validateChineseName } from '../utils/nameValidator';
@@ -11,6 +11,7 @@ import { validateChineseName } from '../utils/nameValidator';
 import { validateUsername } from '../utils/validationUtils';
 import { zodiacs } from '../utils/zodiac';
 import SpeekBtn from './SpeekBtn';
+import { getEnglishMeaning } from '../utils/nameMeanings';
 
 export default function NamePage() {
   const { t } = useTranslation();
@@ -92,13 +93,13 @@ export default function NamePage() {
                   <p class="text-sm mt-1">{usernameError}</p>
                 </div>
               ) : (<p class="text-lg text-gray-700">
-                {t('namePage.greeting', { username: params.username })}
+                {t('namePage.greeting')}<span class="text-blue-600">{params.username}</span>
               </p>)}
 
               {
                 zodiacs.indexOf(params.zodiac) !== -1 && (
                   <p class="text-lg text-gray-700">
-                    {t('namePage.zodiac', { zodiac: params.zodiac })}
+                    {t('namePage.zodiac')}<span class="text-blue-600">{params.zodiac}</span>
                   </p>
                 )
               }
@@ -112,7 +113,13 @@ export default function NamePage() {
                     {params.chineseName}
                     <span class="text-sm text-gray-500">({generatePinyin(params.chineseName)})</span>
                   </p>
+                  <p class="text-lg text-gray-700">
+                    {t('results.meaning')}<span class="text-blue-600">{getEnglishMeaning(params.chineseName.substring(1))}</span>
+                  </p>
                   <SpeekBtn chineseName={params.chineseName} />
+                  <p class="text-sm text-gray-500">
+                    {t('results.zodiac', {zodiac: params.zodiac})}{zodiacMeanings[params.zodiac].meaning}
+                  </p>
                 </>
               ) : (
                 <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mt-6 animate-fadeIn">

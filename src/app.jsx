@@ -9,6 +9,7 @@ import './app.css';
 import { getZodiacSign } from './utils/zodiac';
 import { generateNameImage, downloadCanvasImage } from './utils/canvasUtils';
 import { Router } from 'preact-router';
+import ChineseZodiacExplanation from './components/ChineseZodiacExplanation';
 
 // 保留唯一的导出声明
 export default function App() {
@@ -36,15 +37,18 @@ export default function App() {
       setGeneratedNames({
         popular: {
           name: popularName.fullName,
-          pinyin: generatePinyin(popularName.fullName)
+          pinyin: generatePinyin(popularName.fullName),
+          meaning: popularName.meaning
         },
         fashionable: {
           name: fashionableName.fullName,
-          pinyin: generatePinyin(fashionableName.fullName)
+          pinyin: generatePinyin(fashionableName.fullName),
+          meaning: fashionableName.meaning
         },
         traditional: {
           name: traditionalName.fullName,
-          pinyin: generatePinyin(traditionalName.fullName)
+          pinyin: generatePinyin(traditionalName.fullName),
+          meaning: traditionalName.meaning
         }
       });
     } catch (error) {
@@ -116,7 +120,7 @@ export default function App() {
 
       <div class="max-w-md mx-auto">
         <Header />
-        {location.pathname === '/' && (
+        {location.pathname === '/' && (<>
           <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
             <NameForm
               formData={formData}
@@ -135,6 +139,9 @@ export default function App() {
               />
             )}
           </div>
+
+        <ChineseZodiacExplanation />
+          </>
         )}
         {/* 路由出口 */}
         {location.pathname === '/name' && <NamePage />}
@@ -172,15 +179,18 @@ export default function App() {
         setGeneratedNames({
           popular: {
             name: popularName.fullName,
-            pinyin: generatePinyin(popularName.fullName)
+            pinyin: generatePinyin(popularName.fullName),
+            meaning: popularName.meaning
           },
           fashionable: {
             name: fashionableName.fullName,
-            pinyin: generatePinyin(fashionableName.fullName)
+            pinyin: generatePinyin(fashionableName.fullName),
+            meaning: fashionableName.meaning
           },
           traditional: {
             name: traditionalName.fullName,
-            pinyin: generatePinyin(traditionalName.fullName)
+            pinyin: generatePinyin(traditionalName.fullName),
+            meaning: traditionalName.meaning
           }
         });
       } catch (error) {

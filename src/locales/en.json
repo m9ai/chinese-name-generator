@@ -18,7 +18,9 @@
     "popular": "Popular Style",
     "fashionable": "Fashionable Style",
     "traditional": "Traditional Style",
-    "save_instruction": "Scroll to bottom & click button for save"
+    "save_instruction": "Scroll to bottom & click button for save",
+    "meaning": "Meaning: a person who's ",
+    "zodiac": "Zodiac Sign {{zodiac}} means "
   },
   "results.zodiacSign": "Zodiac Sign",
   "results.compatibility": "Compatibility",
@@ -45,8 +47,8 @@
   "pronunciation.guide": "Click the speaker icon to hear the pronunciation",
   "namePage": {
     "title": "Your Chinese Name",
-    "greeting": "Hello, {{username}}.",
-    "zodiac": "Your Chinese zodiac sign is {{zodiac}},",
+    "greeting": "Hey, ",
+    "zodiac": "Your Chinese zodiac sign is ",
     "name": "Your Chinese name is:"
   },
   "supportAuthor": {
@@ -86,5 +88,22 @@
   },
   "header": {
     "home": "Home"
+  },
+  "zodiac": {
+    "title": "Chinese Zodiac Signs",
+    "explanation": "The Chinese zodiac({{Shengxiao}}) is a 12-year cycle of animal signs used to determine personality traits, compatibility, and fortune in Chinese culture.",
+    "learnMore": "Learn more about Chinese zodiac",
+    "rat": "Rat",
+    "ox": "Ox",
+    "tiger": "Tiger",
+    "rabbit": "Rabbit",
+    "dragon": "Dragon",
+    "snake": "Snake",
+    "horse": "Horse",
+    "goat": "Goat",
+    "monkey": "Monkey",
+    "rooster": "Rooster",
+    "dog": "Dog",
+    "pig": "Pig"
   }
 }
