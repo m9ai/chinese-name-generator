@@ -7,7 +7,7 @@ export default function SpeekBtn(params) {
     return isSpeechSupported() ? (
         <button
             onClick={() => speakName(params.chineseName)}
-            class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors dark:text-white"
+            class="flex items-center text-blue-600 hover:text-blue-800 transition-colors dark:text-blue-600"
             aria-label={t('action.play_pronunciation')}
             style={{backgroundColor: 'rgba(255, 255, 255, 0.6)',borderColor: '#E5E7EB'}}
         >
