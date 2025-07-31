@@ -73,7 +73,7 @@ export default function NamePage() {
   const zodiacBackground = params.zodiac ? getZodiacBackground(params.zodiac) : '/zodiac/default.png';
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="min-h-screen min-w-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 font-sans">
       <div class="max-w-md mx-auto">
         <Header />
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden p-8 relative" style={zodiacBackground ? {
