@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import { useTranslation } from 'react-i18next';
 import { generatePinyin, surnames } from '../utils/nameGenerator';
-import { speakName } from '../utils/speechUtils';
 import { getZodiacBackground } from '../utils/zodiac';
 import SupportAuthor from './SupportAuthor';
 // 导入姓名验证工具
@@ -11,6 +10,7 @@ import { validateChineseName } from '../utils/nameValidator';
 // 添加用户名验证工具导入
 import { validateUsername } from '../utils/validationUtils';
 import { zodiacs } from '../utils/zodiac';
+import SpeekBtn from './SpeekBtn';
 
 export default function NamePage() {
   const { t } = useTranslation();
@@ -78,8 +78,9 @@ export default function NamePage() {
         <Header />
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden p-8 relative" style={zodiacBackground ? {
           backgroundImage: `url(${zodiacBackground})`,
-          backgroundSize: '160px',
-          backgroundPosition: 'bottom right',
+          backgroundSize: 'contain',
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          backgroundBlendMode: 'overlay',
           backgroundRepeat: 'no-repeat',
         } : {}}>
           <div class="relative p-6 rounded-xl">
@@ -111,16 +112,7 @@ export default function NamePage() {
                     {params.chineseName}
                     <span class="text-sm text-gray-500">({generatePinyin(params.chineseName)})</span>
                   </p>
-                  <button
-                    onClick={() => speakName(params.chineseName)}
-                    class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors dark:text-white"
-                    aria-label={t('action.play_pronunciation')}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                    </svg>
-                    {t('action.listen_pronunciation')}
-                  </button>
+                  <SpeekBtn chineseName={params.chineseName} />
                 </>
               ) : (
                 <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mt-6 animate-fadeIn">

@@ -110,7 +110,7 @@ export default function App() {
         </div>
       )
     }
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="min-h-screen min-w-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 font-sans">
       {/* 添加隐藏的canvas元素 */}
       <canvas ref={canvasRef} style="display: none;"></canvas>
 

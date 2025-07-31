@@ -16,7 +16,7 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
   const spacing = 20; // 卡片间距
 
   // 设置Canvas尺寸
-  canvas.width = Math.min(window.innerWidth * 0.8, 500);
+  canvas.width = 500;
   canvas.height = baseHeight + (nameCount * (cardHeight + spacing));
   const ctx = canvas.getContext('2d');
 
@@ -36,9 +36,7 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
     background.src = backgroundUrl;
   });
 
-  ctx.globalAlpha = 0.2;
-  ctx.drawImage(background, canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
-  ctx.globalAlpha = 1;
+  ctx.drawImage(background, canvas.width / 4, canvas.height / 4, canvas.width * 0.8, canvas.height * 0.8);
 
   ctx.font = '24px Arial, sans-serif';
   ctx.fillStyle = '#155dfc';
@@ -93,7 +91,7 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
   });
   
   // 二维码尺寸和位置 (右上角)
-  const qrSize = 110;
+  const qrSize = 120;
   const qrX = canvas.width - qrSize - 40; // 右边距40px
   const qrY = 40; // 上边距40px
   ctx.drawImage(qrCode, qrX, qrY, qrSize, qrSize);

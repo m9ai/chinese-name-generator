@@ -2,6 +2,8 @@ import { surnames } from './nameGenerator';
 import maleGivenNames from './maleGivenNames';
 import femaleGivenNames from './femaleGivenNames';
 
+const FORBIDDEN_CHINESE_NAMES = [''];
+
 /**
  * 验证中文姓名是否有效
  * @param {string} chineseName - 完整中文姓名（3个汉字）

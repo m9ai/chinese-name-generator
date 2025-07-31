@@ -29,16 +29,29 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
         {/* Name Input */}
         <div class="space-y-2">
           <label class="block text-sm font-medium text-gray-700" htmlFor="name">{t('form.name')}</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={onInputChange}
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
-            placeholder="Your English name"
-            required
-          />
+          <div class="relative">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={onInputChange}
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 pr-10"
+              placeholder="Your full name"
+              required
+            />
+            {formData.name && (
+              <button
+                type="button"
+                onClick={() => onInputChange({ target: { name: 'name', value: '' } })}
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
           {/* 添加用户名错误提示 */}
           {usernameError && (
             <p class="text-orange-600 text-sm mt-1">⚠️ {usernameError}</p>
@@ -49,7 +62,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
         <div class="space-y-2">
           <label class="block text-sm font-medium text-gray-700">{t('form.gender')}</label>
           <div class="grid grid-cols-2 gap-4">
-            <label class="relative flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50">
+            <label class="relative flex items-center justify-center p-4 border-1 border-gray-300 rounded-lg cursor-pointer transition-all hover:bg-gray-50">
               <input
                 type="radio"
                 name="gender"
@@ -64,7 +77,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
               </span>
               <span class="text-gray-800 peer-checked:text-blue-600">Male</span>
             </label>
-            <label class="relative flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50">
+            <label class="relative flex items-center justify-center p-4 border-1 border-gray-300 rounded-lg cursor-pointer transition-all hover:bg-gray-50">
               <input
                 type="radio"
                 name="gender"
@@ -101,7 +114,7 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
           type="button"
           onClick={handleGenerateClick}
           disabled={!formData.name || !formData.gender || !formData.birthday || isGenerating || usernameError}
-          class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+          class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
         >
           {isGenerating ? (
             <div class="flex items-center justify-center space-x-2">

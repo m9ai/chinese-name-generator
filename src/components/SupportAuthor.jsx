@@ -21,7 +21,7 @@ export default function SupportAuthor() {
         onClick={() => setShowModal(true)}
         className="px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
       >
-        ☕ Support the Author
+        ☕ {t('supportAuthor.title')}
       </button>
 
       {/* 赞助模态框 */}
@@ -48,13 +48,13 @@ export default function SupportAuthor() {
                     onClick={() => setSelectedAmount('0.99')}
                     className={`px-6 py-3 rounded-full transition-all dark:text-white ${selectedAmount === '0.99' ? 'bg-blue-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
-                    $0.99+ (I like it)
+                    $0.99+ (❤️)
                   </button>
                   <button
                     onClick={() => setSelectedAmount('0.1')}
                     className={`px-6 py-3 rounded-full transition-all dark:text-white ${selectedAmount === '0.1' ? 'bg-yellow-500' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
-                    $0.10+ (Not bad)
+                    $0.10+ (🙃)
                   </button>
                 </div>
               </div>

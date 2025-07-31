@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-// 导入语音工具函数
-import { speakName, isSpeechSupported } from '../utils/speechUtils';
 // 导入赞助作者组件
 import SupportAuthor from '../components/SupportAuthor';
+import SpeekBtn from '../components/SpeekBtn';
+import { getZodiacBackground } from '../utils/zodiac';
 
 export default function NameResults({ names, onSave, saveStatus, userName, zodiac }) {
   const { t } = useTranslation();
@@ -28,25 +28,20 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
       <div class="space-y-6">
         {/* Name Cards */}
         {Object.entries(names).map(([type, nameData], index) => (
-          <div key={index} class="relative bg-white p-5 rounded-xl shadow-sm border border-gray-100 transform transition-all hover:shadow-md hover:-translate-y-0.5 duration-200">
+          <div key={index} class="relative bg-white p-5 rounded-xl shadow-sm border border-gray-100 transform transition-all hover:shadow-md hover:-translate-y-0.5 duration-200"
+            style={{
+              backgroundImage: `url(${getZodiacBackground(zodiac)})`,
+              backgroundSize: '120px',
+              backgroundPosition: 'right bottom',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
             <h3 class="text-sm font-medium text-gray-500 mb-1 capitalize">{t(`results.${type}`)}</h3>
             <p class="text-3xl font-bold text-gray-900 mb-1 tracking-tighter">{nameData.name}</p>
             <p class="text-lg text-blue-600 font-medium mb-3">{nameData.pinyin}</p>
 
             {/* 添加语音播放按钮 */}
-            {/* 条件渲染语音按钮 */}
-            {isSpeechSupported() && (
-              <button
-                onClick={() => speakName(nameData.name)}
-                class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors dark:text-white"
-                aria-label={t('action.play_pronunciation')}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                </svg>
-                {t('action.listen_pronunciation')}
-              </button>
-            )}
+            <SpeekBtn chineseName={nameData.name} />
             <button
               onClick={() => navigateToNamePage(nameData)}
               class="absolute right-0 top-0 px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none dark:text-white"

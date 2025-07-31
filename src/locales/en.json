@@ -1,12 +1,13 @@
 {
   "app.mainTitle": "Chinese Name Generator",
   "app.subTitleArray": [
-    "Discover Your Perfect Chinese Identity",
+    "Craft Your Awesome Chinese Name",
+    "Discover Your Awesome Chinese Identity",
     "Uncover the Meaning Behind Chinese Names",
-    "Bridge Cultures Through Authentic Naming"
+    "Bridge Cultures With Authentic Naming"
   ],
   "app.metaDescription": "Generate authentic Chinese names with meanings, pronunciation guides, and zodiac sign compatibility analysis.",
-  "form.name": "Your Name",
+  "form.name": "Full Name",
   "form.birthday": "Birthday",
   "form.gender": "Gender",
   "form.gender.male": "Male",
@@ -35,7 +36,7 @@
   "results.popular": "Most Popular",
   "results.fashionable": "Most Fashionable",
   "results.traditional": "Most Traditional",
-  "action.save": "Save Image",
+  "action.save": "Save Chinese Names",
   "action.select": "Select",
   "action.listen_pronunciation": "Listen Pronunciation",
   "action.play_pronunciation": "Play pronunciation",
@@ -49,7 +50,7 @@
     "name": "Your Chinese name is:"
   },
   "supportAuthor": {
-    "title": "Support the Author",
+    "title": "Buy me a coffee",
     "chooseAmount": "Choose an amount:",
     "amountOptions": {
       "likeIt": "$0.99+ (I like it)",
@@ -64,10 +65,13 @@
     "backToMethods": "← Back to payment methods"
   },
   "footer": {
-    "description": "Discover the perfect Chinese name that reflects your identity",
+    "description": "Discover a Chinese name that captures your identity",
     "share": "Share",
     "tweet": "Tweet",
-    "tiktok": "TikTok"
+    "tiktok": "TikTok",
+    "contactUs": "Contact Us",
+    "website": "About Us",
+    "copyright": "© 2025 m9ai.work. All rights reserved."
   },
   "nameValidation": {
     "warning": "Name Validation Warning",

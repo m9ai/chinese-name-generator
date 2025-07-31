@@ -47,6 +47,15 @@ export default function Footer() {
         </a>
       </div>
       <p>{t('footer.description')}</p>
+      <p>{t('footer.copyright')}</p>
+      <div>
+        <a href="mailto:c@m9ai.work" target="_blank" rel="noopener noreferrer" className='text-blue-500 space-x-2 display-inline-block mr-4'>
+          📨 {t('footer.contactUs')}
+        </a>
+        <a href="https://m9ai.work/en/contact/" target="_blank" rel="noopener noreferrer" className='text-blue-500 space-x-2 display-inline-block'>
+          🔗 {t('footer.website')}
+        </a>
+      </div>
     </div>
   );
 }

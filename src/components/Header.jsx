@@ -27,7 +27,9 @@ export default function Header() {
   }, [triggerTransition]);
 
   return (
-    <div class="text-center mb-12">
+    <div class="text-center pb-12"
+      style={{backgroundImage: 'url(/zodiac/default.png)', backgroundSize: '175px', backgroundRepeat: 'no-repeat', backgroundPosition: 'right bottom'}}
+    >
       <h1 class="text-[clamp(2.5rem,8vw,4rem)] font-bold mb-3 leading-tight tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">
         {t('app.mainTitle')}
       </h1>
