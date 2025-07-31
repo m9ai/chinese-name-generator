@@ -104,6 +104,7 @@
     "monkey": "Monkey",
     "rooster": "Rooster",
     "dog": "Dog",
-    "pig": "Pig"
+    "pig": "Pig",
+    "cardTxt": "Your Zodiac Sign"
   }
 }

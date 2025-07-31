@@ -99,7 +99,7 @@ export default function NamePage() {
               {
                 zodiacs.indexOf(params.zodiac) !== -1 && (
                   <p class="text-lg text-gray-700">
-                    {t('namePage.zodiac')}<span class="text-blue-600">{params.zodiac}</span>
+                    {t('namePage.zodiac')}<span class="text-blue-600">{params.zodiac.toUpperCase()}</span>
                   </p>
                 )
               }

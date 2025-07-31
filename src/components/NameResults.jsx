@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import SupportAuthor from '../components/SupportAuthor';
 import SpeekBtn from '../components/SpeekBtn';
 import { getZodiacBackground, zodiacMeanings } from '../utils/zodiac';
+import ZodiacCard from '../components/ZodiacCard';
 
 export default function NameResults({ names, onSave, saveStatus, userName, zodiac }) {
   const { t } = useTranslation();
@@ -26,22 +27,15 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
       <p class="text-sm text-gray-500 text-center mb-6">{t('results.save_instruction')}</p>
 
       <div class="space-y-6">
+        <ZodiacCard zodiac={zodiac} />
         {/* Name Cards */}
         {Object.entries(names).map(([type, nameData], index) => (
-          <div key={index} class="relative bg-white p-5 rounded-xl shadow-sm border border-gray-100 transform transition-all hover:shadow-md hover:-translate-y-0.5 duration-200"
-            style={{
-              backgroundImage: `url(${getZodiacBackground(zodiac)})`,
-              backgroundSize: '120px',
-              backgroundPosition: 'right bottom',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
+          <div key={index} class="relative bg-white p-5 rounded-xl shadow-sm border border-gray-100 transform transition-all hover:shadow-md hover:-translate-y-0.5 duration-200">
             <h3 class="text-sm font-medium text-gray-500 mb-1 capitalize">{t(`results.${type}`)}</h3>
             <p class="text-3xl font-bold text-gray-900 mb-1 tracking-tighter">{nameData.name}
               <span class="text-lg text-blue-600 font-medium"> {nameData.pinyin}</span>
             </p>
             <p class="text-sm text-gray-600 mb-3">{t('results.meaning')}{nameData.meaning}</p>
-            <p class="text-sm text-gray-500 mb-3">{t('results.zodiac', {zodiac})}{zodiacMeanings[zodiac].meaning}</p>
 
             {/* 添加语音播放按钮 */}
             <SpeekBtn chineseName={nameData.name} />

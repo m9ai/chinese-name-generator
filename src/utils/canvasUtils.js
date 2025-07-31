@@ -55,7 +55,7 @@ export const generateNameImage = async (generatedNames, birthday, englishName) =
   ctx.fillText(`Based on the input information, `, 50, 130);
   ctx.fillText(`your zodiac sign is `, 50, 160);
   ctx.fillStyle = highlightColor;
-  ctx.fillText(zodiac, 205, 160);
+  ctx.fillText(zodiac.toUpperCase(), 205, 160);
   ctx.fillStyle = textColor;
   ctx.fillText('& the recommended Chinese names are as follows:', 50, 190);
 
