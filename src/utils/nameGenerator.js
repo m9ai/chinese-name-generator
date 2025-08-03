@@ -27,7 +27,13 @@ export const surnames = [
   '万', '支', '柯', '昝', '管', '卢', '莫', '经', '房', '裘',
   '缪', '干', '解', '应', '宗', '丁', '宣', '贲', '邓', '郁',
   '单', '杭', '洪', '包', '诸', '左', '石', '崔', '吉', '钮',
-  '龚', '程', '嵇', '邢', '滑', '裴', '陆', '荣', '翁', '荀'
+  '龚', '程', '嵇', '邢', '滑', '裴', '陆', '荣', '翁', '荀',
+  // 新增的50个姓氏
+  '羊', '於', '惠', '甄', '曲', '家', '封', '芮', '羿', '储',
+  '靳', '汲', '邴', '糜', '松', '井', '段', '富', '巫', '乌',
+  '焦', '巴', '弓', '牧', '隗', '山', '谷', '车', '侯', '宓',
+  '蓬', '全', '郗', '班', '仰', '秋', '仲', '伊', '宫', '宁',
+  '仇', '栾', '暴', '甘', '钭', '厉', '戎', '祖', '武', '符'
 ];
 
 // 生成名字编码
@@ -45,13 +51,19 @@ export const generateCode = (input) => {
   return code;
 };
 
-// 生成中文名（保持不变）
-export const generateChineseName = (input, offset) => {
+// 生成中文名（添加随机性）
+export const generateChineseName = (input, offset = 0) => {
   const code = generateCode(input) + offset;
-  const surnameIndex = code % surnames.length;
+  
+  // 添加随机因素
+  const randomFactor = Math.floor(Math.random() * 1000);
+  
+  const surnameIndex = (code + randomFactor) % surnames.length;
   const givenNames = input.gender === 'male' ? maleGivenNames : femaleGivenNames;
-  const nameIndex1 = Math.floor(code / 100) % givenNames.length;
-  const nameIndex2 = Math.floor(code / 1000) % givenNames.length;
+  
+  // 为名字索引添加不同的随机偏移
+  const nameIndex1 = (Math.floor(code / 100) + Math.floor(Math.random() * 100)) % givenNames.length;
+  const nameIndex2 = (Math.floor(code / 1000) + Math.floor(Math.random() * 100)) % givenNames.length;
 
   const surname = surnames[surnameIndex];
   const givenName1 = givenNames[nameIndex1];
