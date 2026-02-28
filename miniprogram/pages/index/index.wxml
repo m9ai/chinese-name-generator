@@ -1,0 +1,71 @@
+<view class="container">
+  <text class="title">✨ 你的完美中文名在这里</text>
+  <text class="subtitle">为外国人生成有意义的中文名字</text>
+  
+  <view class="form-group">
+    <text class="label">英文名</text>
+    <input 
+      class="input" 
+      placeholder="例如: Taylor Alison Swift"
+      value="{{formData.name}}"
+      bindinput="onNameInput"
+    />
+  </view>
+  
+  <view class="form-group">
+    <text class="label">性别</text>
+    <view class="gender-options">
+      <radio-group bindchange="onGenderChange">
+        <label class="radio-item">
+          <radio value="male" checked="{{formData.gender === 'male'}}" />
+          <text>男</text>
+        </label>
+        <label class="radio-item">
+          <radio value="female" checked="{{formData.gender === 'female'}}" />
+          <text>女</text>
+        </label>
+      </radio-group>
+    </view>
+  </view>
+  
+  <view class="form-group">
+    <text class="label">生日</text>
+    <picker mode="date" bindchange="onBirthdayChange" value="{{formData.birthday}}">
+      <input 
+        class="input" 
+        placeholder="选择生日"
+        value="{{formData.birthday || '请选择生日'}}"
+        disabled
+      />
+    </picker>
+  </view>
+  
+  <button class="button" bindtap="generateNames" disabled="{{isGenerating}}">
+    <text>{{isGenerating ? '生成中...' : '生成我的中文名'}}</text>
+  </button>
+  
+  <!-- 结果显示 -->
+  <view wx:if="{{generatedNames}}" class="results">
+    <view class="result-item">
+      <text class="result-name">{{generatedNames.popular.name}}</text>
+      <text class="result-pinyin">{{generatedNames.popular.pinyin}}</text>
+      <text class="result-meaning">流行风格: {{generatedNames.popular.meaning}}</text>
+    </view>
+    
+    <view class="result-item">
+      <text class="result-name">{{generatedNames.fashionable.name}}</text>
+      <text class="result-pinyin">{{generatedNames.fashionable.pinyin}}</text>
+      <text class="result-meaning">时尚风格: {{generatedNames.fashionable.meaning}}</text>
+    </view>
+    
+    <view class="result-item">
+      <text class="result-name">{{generatedNames.traditional.name}}</text>
+      <text class="result-pinyin">{{generatedNames.traditional.pinyin}}</text>
+      <text class="result-meaning">传统风格: {{generatedNames.traditional.meaning}}</text>
+    </view>
+    
+    <button class="button" bindtap="saveImage">
+      保存名字图片
+    </button>
+  </view>
+</view>

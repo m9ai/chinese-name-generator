@@ -13,7 +13,7 @@ export default defineConfig({
       manifest: {
         name: 'Chinese Name Generator',
         short_name: 'Name Gen',
-        description: 'Generate Chinese names for foreigners',
+        description: 'Generate authentic Chinese names with meanings, pronunciation guides, and zodiac sign compatibility analysis. Get your perfect Chinese identity in seconds!',
         theme_color: '#ffffff',
         icons: [{
           src: 'favicon.svg',

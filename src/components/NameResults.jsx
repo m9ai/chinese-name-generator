@@ -39,12 +39,43 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
 
             {/* 添加语音播放按钮 */}
             <SpeekBtn chineseName={nameData.name} />
-            <button
-              onClick={() => navigateToNamePage(nameData)}
-              class="absolute right-0 top-0 px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none dark:text-white"
-            >
-              {t('action.select')}
-            </button>
+            <div class="flex space-x-2 absolute right-0 top-0">
+              <button
+                onClick={() => navigateToNamePage(nameData)}
+                class="px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none dark:text-white"
+              >
+                {t('action.select')}
+              </button>
+              <button 
+                onClick={() => {
+                  const shareText = `${t('share.title')}: ${nameData.name} (${nameData.pinyin})\n${t('share.zodiac')}: ${zodiac}\n${t('share.generated_by')}: chinese-name.m9ai.work`;
+                  if (navigator.share) {
+                    navigator.share({
+                      title: t('share.title'),
+                      text: shareText,
+                      url: window.location.href
+                    }).catch(console.error);
+                  } else {
+                    navigator.clipboard.writeText(shareText + '\n' + window.location.href)
+                      .then(() => {
+                        // 显示复制成功提示
+                        const toast = document.createElement('div');
+                        toast.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-green-500 text-white rounded-md';
+                        toast.textContent = t('share.copied');
+                        document.body.appendChild(toast);
+                        setTimeout(() => document.body.removeChild(toast), 2000);
+                      })
+                      .catch(console.error);
+                  }
+                }}
+                class="px-3 py-1 text-gray-600 text-sm rounded-lg hover:bg-gray-100 transition-colors border-none outline-none dark:text-gray-300"
+                title={t('share.button_title')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+              </button>
+            </div>
           </div>
         ))}
 

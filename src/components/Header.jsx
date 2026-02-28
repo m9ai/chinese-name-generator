@@ -33,6 +33,10 @@ export default function Header() {
       <h1 class="text-[clamp(2.5rem,8vw,4rem)] font-bold mb-3 leading-tight tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">
         {t('app.mainTitle')}
       </h1>
+      {/* 用户统计数字 */}
+      <div class="mb-2 text-sm text-gray-500">
+        <span class="font-medium text-blue-600">✨ {t('stats.users_count')}</span> {t('stats.users_unit')}
+      </div>
       {/* 添加Home链接 */}
       <div class="mb-4">
         <a href="/" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors cursor-pointer">
