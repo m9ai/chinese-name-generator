@@ -1,6 +1,7 @@
 import { surnames } from './nameGenerator';
 import maleGivenNames from './maleGivenNames';
 import femaleGivenNames from './femaleGivenNames';
+import { wuxingGivenNames } from './wuxing';
 
 const FORBIDDEN_CHINESE_NAMES = [''];
 
@@ -43,8 +44,20 @@ export const validateChineseName = (chineseName, gender, t) => {
     };
   }
 
-  // 根据性别选择对应的名字数组
-  const givenNames = [...maleGivenNames, ...femaleGivenNames];
+  // 根据性别选择对应的名字数组，并合并五行名字库
+  const wuxingNames = [
+    ...wuxingGivenNames.male.wood,
+    ...wuxingGivenNames.male.fire,
+    ...wuxingGivenNames.male.earth,
+    ...wuxingGivenNames.male.metal,
+    ...wuxingGivenNames.male.water,
+    ...wuxingGivenNames.female.wood,
+    ...wuxingGivenNames.female.fire,
+    ...wuxingGivenNames.female.earth,
+    ...wuxingGivenNames.female.metal,
+    ...wuxingGivenNames.female.water
+  ];
+  const givenNames = [...new Set([...maleGivenNames, ...femaleGivenNames, ...wuxingNames])];
 
   // 验证名字第一个字
   if (!givenNames.includes(givenName1)) {
