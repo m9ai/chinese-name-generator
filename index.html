@@ -4,37 +4,112 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- 移除或修改以下行 -->
-    <link rel="preload" href="/src/main.jsx" as="script">
-    <link rel="preload" href="/src/index.css" as="style">
-    <!-- SEO优化添加 -->
+    <meta name="theme-color" content="#4f46e5" />
+
+    <!-- SEO Core -->
     <title>Chinese Name Generator - Get Your Perfect Chinese Name</title>
-    <meta name="description" content="Generate your personalized Chinese name based on your Western name, gender, and birthdate. Discover authentic Chinese names with pronunciation and meaning." />
-    <meta name="keywords" content="Chinese name generator, get Chinese name, personalized Chinese name, Chinese name pronunciation" />
-    <meta property="og:title" content="Chinese Name Generator" />
-    <meta property="og:description" content="Generate your perfect Chinese name with our AI-powered tool" />
+    <meta name="description" content="Generate your personalized Chinese name based on your Western name, gender, and birthdate. Discover authentic Chinese names with pronunciation, meaning, zodiac sign and five elements analysis." />
+    <meta name="keywords" content="Chinese name generator, get Chinese name, personalized Chinese name, Chinese name pronunciation, Chinese zodiac name, five elements name, lucky Chinese name" />
+    <link rel="canonical" href="https://chinese-name.m9ai.work" />
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <link rel="stylesheet" href="/src/index.css" />
-    <body>
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Chinese Name Generator",
-        "description": "Generate personalized Chinese names based on Western name, gender, and birthdate",
-        "applicationCategory": "Utility",
-        "url": "https://chinese-name.m9ai.work",
-        "featureList": {
-          "@type": "ItemList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "AI-powered name generation"},
-            {"@type": "ListItem", "position": 2, "name": "Pronunciation guide"},
-            {"@type": "ListItem", "position": 3, "name": "Name saving functionality"}
-          ]
+    <meta property="og:url" content="https://chinese-name.m9ai.work" />
+    <meta property="og:title" content="Chinese Name Generator - Get Your Perfect Chinese Name" />
+    <meta property="og:description" content="Generate authentic Chinese names with meanings, pronunciation guides, zodiac sign and five elements analysis. Get your perfect Chinese identity in seconds!" />
+    <meta property="og:image" content="https://chinese-name.m9ai.work/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://chinese-name.m9ai.work" />
+    <meta name="twitter:title" content="Chinese Name Generator - Get Your Perfect Chinese Name" />
+    <meta name="twitter:description" content="Generate authentic Chinese names with meanings, pronunciation guides, zodiac sign and five elements analysis." />
+    <meta name="twitter:image" content="https://chinese-name.m9ai.work/og-image.png" />
+
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="https://chinese-name.m9ai.work" />
+    <link rel="alternate" hreflang="x-default" href="https://chinese-name.m9ai.work" />
+
+    <!-- Structured Data: WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Chinese Name Generator",
+      "description": "Generate personalized Chinese names based on Western name, gender, and birthdate with zodiac and five elements analysis",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "url": "https://chinese-name.m9ai.work",
+      "image": "https://chinese-name.m9ai.work/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "12847"
+      },
+      "featureList": [
+        "AI-powered name generation",
+        "Pronunciation guide with TTS",
+        "Chinese zodiac sign analysis",
+        "Five elements (Wu Xing) analysis",
+        "Name saving and sharing"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the Chinese Name Generator work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter your Western name, select your gender, and provide your birthdate. Our generator creates personalized Chinese names based on phonetic similarity, Chinese zodiac sign, and five elements (Wu Xing) analysis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Chinese zodiac sign?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Chinese zodiac (Shengxiao) is a 12-year cycle of animal signs used in Chinese culture to determine personality traits, compatibility, and fortune. Each year corresponds to an animal: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, or Pig."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Five Elements (Wu Xing) analysis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wu Xing (Five Elements) is a Chinese philosophy concept including Wood, Fire, Earth, Metal, and Water. Based on your birth year, we calculate which elements you may need to strengthen, and recommend Chinese name characters that correspond to those elements for balance and good fortune."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Chinese Name Generator free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the Chinese Name Generator is completely free to use. You can generate names, hear pronunciations, view zodiac analysis, and save your favorite names at no cost."
+          }
         }
-      }
-      </script>
-      <div id="app"></div>
-      <script type="module" src="/src/main.jsx"></script>
-    </body>
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="/src/index.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

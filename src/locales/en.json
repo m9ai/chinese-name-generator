@@ -119,6 +119,11 @@
     "pig": "Pig",
     "cardTxt": "Your Zodiac Sign"
   },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist. Let us help you find your perfect Chinese name instead!",
+    "backHome": "Back to Name Generator"
+  },
   "share": {
     "title": "My Chinese Name",
     "zodiac": "Zodiac Sign",

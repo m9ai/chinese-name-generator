@@ -10,6 +10,8 @@ import { getZodiacSign } from './utils/zodiac';
 import { generateNameImage, downloadCanvasImage } from './utils/canvasUtils';
 import ChineseZodiacExplanation from './components/ChineseZodiacExplanation';
 import NamePage from './components/NamePage';
+import NotFound from './components/NotFound';
+import { useDocumentMeta } from './hooks/useDocumentMeta';
 
 // 保留唯一的导出声明
 export default function App() {
@@ -129,6 +131,8 @@ export default function App() {
     location.hostname !== 'localhost' && Clarity.init('smz8tcd1tm')
   }, [])
 
+  useDocumentMeta(location.pathname);
+
   return (<>
     {
       showToast.visible && (
@@ -170,6 +174,7 @@ export default function App() {
         )}
         {/* 路由出口 */}
         {location.pathname === '/name' && <NamePage />}
+        {location.pathname !== '/' && location.pathname !== '/name' && <NotFound />}
         <Footer />
       </div>
     </div>
