@@ -9,29 +9,38 @@ export default function SupportAuthor() {
 
   // 支付链接/二维码配置（请替换为实际链接）
   const paymentConfig = {
-    'paypal': 'https://paypal.me/m9ai',
+    'paypal': 'https://www.paypal.com/paypalme/m9ai',
     'alipay': '/payment-qrcodes/alipay.png',
     'wechat': '/payment-qrcodes/wechat.png'
   };
 
   return (
     <div className="text-center">
+      {/* 社交证明 */}
+      <p className="text-xs text-gray-400 mb-3">
+        {t('supportAuthor.socialProof')}
+      </p>
+
       {/* 触发按钮 */}
       <button 
         onClick={() => setShowModal(true)}
-        className="px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+        className="px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate-pulse-slow"
       >
         ☕ {t('supportAuthor.title')}
       </button>
 
+      <p className="text-xs text-gray-400 mt-3 max-w-xs mx-auto">
+        {t('supportAuthor.subtitle')}
+      </p>
+
       {/* 赞助模态框 */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-md w-full mx-auto overflow-hidden">
+          <div className="bg-white rounded-2xl max-w-md w-full mx-auto overflow-hidden relative">
             {/* 关闭按钮 */}
-            <button 
+            <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
             >
               ✕
             </button>
@@ -48,13 +57,13 @@ export default function SupportAuthor() {
                     onClick={() => setSelectedAmount('0.99')}
                     className={`px-6 py-3 rounded-full transition-all dark:text-white ${selectedAmount === '0.99' ? 'bg-blue-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
-                    $0.99+ (❤️)
+                    {t('supportAuthor.amountOptions.likeIt')}
                   </button>
                   <button
                     onClick={() => setSelectedAmount('0.1')}
                     className={`px-6 py-3 rounded-full transition-all dark:text-white ${selectedAmount === '0.1' ? 'bg-yellow-500' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
-                    $0.10+ (🙃)
+                    {t('supportAuthor.amountOptions.notBad')}
                   </button>
                 </div>
               </div>

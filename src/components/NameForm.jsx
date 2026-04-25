@@ -130,16 +130,3 @@ export default function NameForm({ formData, onInputChange, onGenerate, isGenera
     </div>
   );
 }
-
-const onGenerate = () => {
-  // 确保导航URL包含gender参数
-  router.push({
-    path: '/name',
-    query: {
-      username: formData.name,
-      chineseName: generatedName.fullName,
-      zodiac: calculatedZodiac,
-      gender: formData.gender // 添加性别参数
-    }
-  });
-};

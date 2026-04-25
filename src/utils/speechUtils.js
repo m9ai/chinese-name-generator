@@ -2,7 +2,7 @@ export function isSpeechSupported() {
   return 'speechSynthesis' in window;
 }
 
-export function speakName(name) {
+export function speakName(name, onEnd) {
   // 检查浏览器支持情况
   if (!isSpeechSupported()) {
     console.warn('当前浏览器不支持语音合成功能');
@@ -16,6 +16,9 @@ export function speakName(name) {
     utterance.onerror = (event) => {
       console.error('语音播放失败:', event.error);
     };
+    if (typeof onEnd === 'function') {
+      utterance.onend = onEnd;
+    }
     window.speechSynthesis.speak(utterance);
     return true;
   } catch (error) {

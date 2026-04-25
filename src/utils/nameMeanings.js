@@ -35,6 +35,12 @@ const characterMeanings = {
   '囿': 'encompassing', '糯': 'gentle', '汛': 'abundant', '源': 'sourceful', '嵘': 'lofty',
   '杭': 'prosperous', '满': 'fulfilling', '有': 'possessing', '初': 'new', '依': 'reliable',
   '榕': 'strong', '珩': 'precious', '兮': 'elegant', '川': 'flowing', '书': 'scholarly',
+  // 五行补充字
+  '林': 'foresty', '森': 'lush', '樱': 'cherry-like', '楠': 'noble wood',
+  '煊': 'warm', '炜': 'brilliant', '煦': 'warm', '照': 'shining', '暖': 'warm',
+  '垚': 'lofty', '培': 'nurturing', '基': 'foundational', '堂': 'dignified', '均': 'balanced', '坦': 'calm', '坪': 'peaceful', '壤': 'fertile',
+  '鑫': 'prosperous', '铭': 'memorable', '钧': 'balanced', '铮': 'resounding', '铄': 'brilliant', '锦': 'splendid', '铖': 'strong', '铠': 'armored', '铸': 'forged',
+  '涵': 'inclusive', '洋': 'vast', '润': 'nourishing',
   '研': 'studious', '禹': 'wise', '泊': 'calm', '冬': 'persevering', '惠': 'kind',
   '祎': 'beautiful', '容': 'tolerant', '真': 'genuine', '柔': 'gentle', '炀': 'bright',
   '熹': 'radiant', '滕': 'rising', '颂': 'praiseworthy', '轼': 'wise', '羲': 'righteous',

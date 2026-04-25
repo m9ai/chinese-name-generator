@@ -5,11 +5,35 @@ import SpeekBtn from '../components/SpeekBtn';
 import { getZodiacBackground, zodiacMeanings } from '../utils/zodiac';
 import ZodiacCard from '../components/ZodiacCard';
 
-export default function NameResults({ names, onSave, saveStatus, userName, zodiac }) {
-  const { t } = useTranslation();
+import { useState, useEffect } from 'preact/hooks';
+import WuxingCard from './WuxingCard';
 
-  // 删除组件内部的speakName定义
+export default function NameResults({ names, onSave, saveStatus, userName, zodiac, onRegenerate, birthday }) {
+  const { t } = useTranslation();
+  const [regenCount, setRegenCount] = useState(0);
+  const [showSupportNudge, setShowSupportNudge] = useState(null); // 'saved' | 'listened' | 'regen' | null
+
+  useEffect(() => {
+    if (saveStatus === 'saved') {
+      setShowSupportNudge('saved');
+      const timer = setTimeout(() => setShowSupportNudge(prev => prev === 'saved' ? null : prev), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [saveStatus]);
+
   if (!names) return null;
+
+  const handleRegenerate = (type) => {
+    if (onRegenerate) {
+      onRegenerate(type);
+      const nextCount = regenCount + 1;
+      setRegenCount(nextCount);
+      if (nextCount >= 3) {
+        setShowSupportNudge('regen');
+        setTimeout(() => setShowSupportNudge(prev => prev === 'regen' ? null : prev), 5000);
+      }
+    }
+  };
 
   const navigateToNamePage = (nameData) => {
     const params = new URLSearchParams({
@@ -28,25 +52,48 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
 
       <div class="space-y-6">
         <ZodiacCard zodiac={zodiac} />
+        <WuxingCard birthday={birthday} />
         {/* Name Cards */}
         {Object.entries(names).map(([type, nameData], index) => (
           <div key={index} class="relative bg-white p-5 rounded-xl shadow-sm border border-gray-100 transform transition-all hover:shadow-md hover:-translate-y-0.5 duration-200">
-            <h3 class="text-sm font-medium text-gray-500 mb-1 capitalize">{t(`results.${type}`)}</h3>
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="text-sm font-medium text-gray-500 capitalize">{t(`results.${type}`)}</h3>
+              {type === 'lucky' && nameData.wuxingElement && (
+                <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-medium">
+                  {t(`wuxing.${nameData.wuxingElement}`)}
+                </span>
+              )}
+            </div>
             <p class="text-3xl font-bold text-gray-900 mb-1 tracking-tighter">{nameData.name}
               <span class="text-lg text-blue-600 font-medium"> {nameData.pinyin}</span>
             </p>
             <p class="text-sm text-gray-600 mb-3">{t('results.meaning')}{nameData.meaning}</p>
 
             {/* 添加语音播放按钮 */}
-            <SpeekBtn chineseName={nameData.name} />
+            <SpeekBtn
+              chineseName={nameData.name}
+              onPlayEnd={() => {
+                setShowSupportNudge('listened');
+                setTimeout(() => setShowSupportNudge(prev => prev === 'listened' ? null : prev), 4000);
+              }}
+            />
             <div class="flex space-x-2 absolute right-0 top-0">
+              <button
+                onClick={() => handleRegenerate(type)}
+                class="px-3 py-1 text-gray-500 text-sm rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors border-none outline-none"
+                title={t('action.regenerate')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </button>
               <button
                 onClick={() => navigateToNamePage(nameData)}
                 class="px-3 py-1 text-blue-600 text-sm rounded-lg hover:text-blue-600 transition-colors border-none outline-none dark:text-white"
               >
                 {t('action.select')}
               </button>
-              <button 
+              <button
                 onClick={() => {
                   const shareText = `${t('share.title')}: ${nameData.name} (${nameData.pinyin})\n${t('share.zodiac')}: ${zodiac}\n${t('share.generated_by')}: chinese-name.m9ai.work`;
                   if (navigator.share) {
@@ -112,6 +159,17 @@ export default function NameResults({ names, onSave, saveStatus, userName, zodia
             t('action.save')  // 修改为保存图片的文本
           )}
         </button>
+
+        {/* 动态打赏提示 */}
+        {showSupportNudge && (
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center animate-fadeIn">
+            <p class="text-amber-800 text-sm font-medium">
+              {showSupportNudge === 'saved' && t('supportNudge.saved')}
+              {showSupportNudge === 'listened' && t('supportNudge.listened')}
+              {showSupportNudge === 'regen' && t('supportNudge.regen')}
+            </p>
+          </div>
+        )}
 
         {/* 添加赞助作者组件 */}
         <div class="pt-6 border-t border-gray-100">

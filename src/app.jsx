@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'preact/hooks';
 import Clarity from '@microsoft/clarity';
-import { generateChineseName, generatePinyin } from './utils/nameGenerator';
+import { generateChineseName, generateWuxingName, generatePinyin } from './utils/nameGenerator';
 import NameForm from './components/NameForm';
 import NameResults from './components/NameResults';
 import Header from './components/Header';
@@ -8,8 +8,8 @@ import Footer from './components/Footer';
 import './app.css';
 import { getZodiacSign } from './utils/zodiac';
 import { generateNameImage, downloadCanvasImage } from './utils/canvasUtils';
-import { Router } from 'preact-router';
 import ChineseZodiacExplanation from './components/ChineseZodiacExplanation';
+import NamePage from './components/NamePage';
 
 // 保留唯一的导出声明
 export default function App() {
@@ -26,13 +26,15 @@ export default function App() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const typeOffsets = { popular: 100, fashionable: 200 };
+
   const generateNames = async () => {
     setIsGenerating(true);
     try {
       // 生成三种不同类型的名字
-      const popularName = generateChineseName(formData, 100);
-      const fashionableName = generateChineseName(formData, 200);
-      const traditionalName = generateChineseName(formData, 300);
+      const popularName = generateChineseName(formData, typeOffsets.popular);
+      const fashionableName = generateChineseName(formData, typeOffsets.fashionable);
+      const luckyName = generateWuxingName(formData);
 
       setGeneratedNames({
         popular: {
@@ -45,10 +47,11 @@ export default function App() {
           pinyin: generatePinyin(fashionableName.fullName),
           meaning: fashionableName.meaning
         },
-        traditional: {
-          name: traditionalName.fullName,
-          pinyin: generatePinyin(traditionalName.fullName),
-          meaning: traditionalName.meaning
+        lucky: {
+          name: luckyName.fullName,
+          pinyin: generatePinyin(luckyName.fullName),
+          meaning: luckyName.meaning,
+          wuxingElement: luckyName.wuxingElement
         }
       });
     } catch (error) {
@@ -56,6 +59,26 @@ export default function App() {
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  const regenerateSingleType = (type) => {
+    if (!formData.name || !formData.gender || !formData.birthday) return;
+    let newName;
+    if (type === 'lucky') {
+      newName = generateWuxingName(formData);
+    } else {
+      const offset = typeOffsets[type] || 100;
+      newName = generateChineseName(formData, offset + Math.floor(Math.random() * 50));
+    }
+    setGeneratedNames(prev => ({
+      ...prev,
+      [type]: {
+        name: newName.fullName,
+        pinyin: generatePinyin(newName.fullName),
+        meaning: newName.meaning,
+        wuxingElement: newName.wuxingElement
+      }
+    }));
   };
 
   // 添加结果区域滚动逻辑
@@ -136,6 +159,8 @@ export default function App() {
                 ref={resultsRef}
                 userName={formData.name}
                 zodiac={zodiac}
+                onRegenerate={regenerateSingleType}
+                birthday={formData.birthday}
               />
             )}
           </div>
@@ -150,109 +175,4 @@ export default function App() {
     </div>
   </>
   );
-  // 通过 Router 组件的 onChange 事件跟踪当前路径
-  // 移除重复的声明（保留一个即可）
-  // 第274行的重复声明
-  // const [currentPath, setCurrentPath] = useState('/');
-  
-  // 保留组件顶部的原始声明
-  function App() {
-    const [currentPath, setCurrentPath] = useState('/');
-    const [formData, setFormData] = useState({ name: '', gender: '', birthday: '' });
-    const [generatedNames, setGeneratedNames] = useState(null);
-    const [isGenerating, setIsGenerating] = useState(false);
-    const [saveStatus, setSaveStatus] = useState('');
-  
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({ ...prev, [name]: value }));
-    };
-  
-    const generateNames = async () => {
-      setIsGenerating(true);
-      try {
-        // 生成三种不同类型的名字
-        const popularName = generateChineseName(formData, 100);
-        const fashionableName = generateChineseName(formData, 200);
-        const traditionalName = generateChineseName(formData, 300);
-  
-        setGeneratedNames({
-          popular: {
-            name: popularName.fullName,
-            pinyin: generatePinyin(popularName.fullName),
-            meaning: popularName.meaning
-          },
-          fashionable: {
-            name: fashionableName.fullName,
-            pinyin: generatePinyin(fashionableName.fullName),
-            meaning: fashionableName.meaning
-          },
-          traditional: {
-            name: traditionalName.fullName,
-            pinyin: generatePinyin(traditionalName.fullName),
-            meaning: traditionalName.meaning
-          }
-        });
-      } catch (error) {
-        console.error('Failed to generate names:', error);
-      } finally {
-        setIsGenerating(false);
-      }
-    };
-  
-    // 添加结果区域滚动逻辑
-    useEffect(() => {
-      if (generatedNames) {
-        setTimeout(() => {
-          const resultsTitle = document.getElementById('results-title');
-          if (resultsTitle) {
-            resultsTitle.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        }, 500); // 延迟确保DOM已更新
-      }
-    }, [generatedNames]);
-  
-    const handleSave = async () => {
-      if (!generatedNames || !formData.birthday || !formData.name) return;
-  
-      setSaveStatus('saving');
-      try {
-        // 传递英文名参数
-        const canvas = await generateNameImage(generatedNames, formData.birthday, formData.name);
-        const downloadSuccess = downloadCanvasImage(canvas);
-        if (downloadSuccess) {
-          setSaveStatus('saved');
-        } else {
-          throw new Error('图片下载失败');
-        }
-      } catch (error) {
-        console.error('生成图片失败:', error);
-        setSaveStatus('error');
-        setShowToast({ visible: true, message: '保存失败：' + error.message, type: 'error' });
-      } finally {
-        setTimeout(() => setSaveStatus(''), 2000);
-      }
-    };
-    const [showToast, setShowToast] = useState({ visible: false, message: '', type: '' });
-  
-    useEffect(() => {
-      if (formData.birthday) {
-        setZodiac(getZodiacSign(formData.birthday));
-      }
-    }, [formData.birthday]);
-  
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <Router onChange={(e) => setCurrentPath(e.url)}>
-          <NameForm path="/" />
-          <NamePage path="/name" />
-        </Router>
-        <Footer />
-      </div>
-    );
-  }
 }

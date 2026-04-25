@@ -1,5 +1,6 @@
 import { pinyin } from 'pinyin-pro';
 import { getEnglishMeaning } from './nameMeanings';
+import { getWuxingAnalysis, wuxingGivenNames } from './wuxing';
 
 // 导入扩充后的名字数组
 import maleGivenNames from './maleGivenNames';
@@ -85,4 +86,45 @@ export const generatePinyin = (name) => {
     style: pinyin.STYLE_TONE2,
     heteronym: false
   })
+};
+
+// 基于五行生成中文名（幸运补运风格）
+export const generateWuxingName = (input) => {
+  if (!input.birthday) {
+    // 如果没有生日，回退到普通生成
+    return generateChineseName(input, 300);
+  }
+
+  const analysis = getWuxingAnalysis(input.birthday);
+  const missing = analysis.missingElements;
+
+  // 如果没有缺失，随机选一个元素
+  const targetElement = missing.length > 0
+    ? missing[Math.floor(Math.random() * missing.length)]
+    : ['wood', 'fire', 'earth', 'metal', 'water'][Math.floor(Math.random() * 5)];
+
+  const pool = input.gender === 'male'
+    ? wuxingGivenNames.male[targetElement]
+    : wuxingGivenNames.female[targetElement];
+
+  // 姓氏保持不变（用哈希确定）
+  const code = generateCode(input);
+  const surnameIndex = (code + Math.floor(Math.random() * 1000)) % surnames.length;
+  const surname = surnames[surnameIndex];
+
+  // 从五行字库中选两个字（允许相同）
+  const nameIndex1 = Math.floor(Math.random() * pool.length);
+  const nameIndex2 = Math.floor(Math.random() * pool.length);
+  const givenName1 = pool[nameIndex1];
+  const givenName2 = pool[nameIndex2];
+  const fullName = surname + givenName1 + givenName2;
+
+  return {
+    surname,
+    givenName1,
+    givenName2,
+    fullName,
+    meaning: getEnglishMeaning(givenName1 + givenName2),
+    wuxingElement: targetElement
+  };
 };
